@@ -1,3 +1,4 @@
+import { Drink } from '../Drink';
 import './style.css';
 
 export const Menu = (props) => {
@@ -9,29 +10,32 @@ export const Menu = (props) => {
           Vyberte si z našeho interaktivního menu a nemusíte čekat na obsluhu
         </p>
         <div className="drinks-list">
-          <div className="drink">
-            <div className="drink__product">
-              <div className="drink__cup">
-                <img src="/cups/espresso.png" />
-              </div>
-              <div className="drink__info">
-                <h3>Espresso</h3>
-                <div className="layer">
-                  <div
-                    className="layer__color"
-                    style={{ backgroundColor: '#613916' }}
-                  ></div>
-                  <div className="layer__label">espresso</div>
-                </div>
-              </div>
-            </div>
-            <form className="drink__controls">
-              <input type="hidden" className="order-id" value="0" />
-              <button className="order-btn">Objednat</button>
-            </form>
-          </div>
+          <Drink
+            id={0}
+            name="Romano"
+            ordered={false}
+            image="http://localhost:4000/assets/cups/romano.png"
+            layers={[
+              {
+                color: '#fbdf5b',
+                label: 'citrón',
+              },
+              {
+                color: '#613916',
+                label: 'espresso',
+              },
+            ]}
+          />
+        </div>
+        <div className="order-detail">
+          <a href="/order.html">Detail objednávky</a>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-          <div className="drink">
+/* <div className="drink">
             <div className="drink__product">
               <div className="drink__cup">
                 <img src="/cups/doppio.png" />
@@ -81,12 +85,4 @@ export const Menu = (props) => {
               <button className="order-btn">Objednat</button>
             </form>
           </div>
-        </div>
-
-        <div className="order-detail">
-          <a href="/order.html">Detail objednávky</a>
-        </div>
-      </div>
-    </section>
-  );
-};
+        // </div> */

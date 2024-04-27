@@ -3,6 +3,26 @@ import '../global.css';
 import './order.css';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { OrderItems } from '../components/OrderItem';
+const response = await fetch(
+  `http://localhost:4000/api/drinks?filter=ordered:eq:true&select=id,name,image`,
+  {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // body: JSON.stringify([
+    //   {
+    //     op: 'replace',
+    //     path: '/ordered',
+    //     value: !ordered,
+    //   },
+    // ]),
+  },
+);
+const json = await response.json();
+const drinks = json.data;
+console.log(drinks);
 
 document.querySelector('#root').innerHTML = render(
   <div className="page">
@@ -16,26 +36,22 @@ document.querySelector('#root').innerHTML = render(
             Zatím nemáte nic objednáno
           </p>
           <div className="order__items">
-            <div className="order-item">
-              <img src="/cups/espresso.png" className="order-item__image" />
-              <div className="order-item__name">Espresso</div>
-            </div>
-
-            <div className="order-item">
-              <img src="/cups/doppio.png" className="order-item__image" />
-              <div className="order-item__name">Doppio</div>
-            </div>
+            <>
+              {drinks.map(({ id, name, image }) => (
+                <OrderItems key={id} name={name} image={image} />
+              ))}
+            </>
           </div>
         </div>
       </main>
-
-      <footer>
+      <Footer />
+      {/* <footer>
         <div className="container">
           <div className="footer__content">
             Café Lóra je tréningový projekt v rámci Czechitas kurzu JavaScript 2
           </div>
         </div>
-      </footer>
+      </footer>  */}
     </div>
   </div>,
 );

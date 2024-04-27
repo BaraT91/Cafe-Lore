@@ -2,6 +2,16 @@ import './style.css';
 import { Layer } from '../Layer';
 
 export const Drink = (props) => {
+  let objednavka = null;
+  let trida = '';
+  if (props.ordered === true) {
+    objednavka = 'Zrušit';
+    trida = 'order-btn--ordered';
+  } else {
+    objednavka = 'Objednat';
+    trida = '';
+  }
+
   return (
     <div className="drink">
       <div className="drink__product">
@@ -15,9 +25,13 @@ export const Drink = (props) => {
           ))}
         </div>
       </div>
-      <form className="drink__controls">
+      <form
+        className="drink__controls"
+        data-id={props.id}
+        data-ordered={String(props.ordered)}
+      >
         <input type="hidden" className="order-id" value="0" />
-        <button className="order-btn">Objednat</button>
+        <button className={`order-btn ${trida}`}>{objednavka}</button>
       </form>
     </div>
   );

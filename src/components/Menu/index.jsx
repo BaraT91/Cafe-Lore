@@ -1,7 +1,7 @@
 import { Drink } from '../Drink';
 import './style.css';
 
-export const Menu = (props) => {
+export const Menu = ({ nápoj }) => {
   return (
     <section className="menu" id="menu">
       <div className="container">
@@ -10,22 +10,18 @@ export const Menu = (props) => {
           Vyberte si z našeho interaktivního menu a nemusíte čekat na obsluhu
         </p>
         <div className="drinks-list">
-          <Drink
-            id={0}
-            name="Romano"
-            ordered={false}
-            image="http://localhost:4000/assets/cups/romano.png"
-            layers={[
-              {
-                color: '#fbdf5b',
-                label: 'citrón',
-              },
-              {
-                color: '#613916',
-                label: 'espresso',
-              },
-            ]}
-          />
+          <>
+            {nápoj.map(({ id, name, ordered, layers, image }) => (
+              <Drink
+                key={id}
+                id={id}
+                name={name}
+                ordered={ordered}
+                image={`http://localhost:4000${image}`}
+                layers={layers}
+              />
+            ))}
+          </>
         </div>
         <div className="order-detail">
           <a href="/order.html">Detail objednávky</a>

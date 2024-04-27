@@ -10,7 +10,9 @@ export const Drink = (props) => {
         </div>
         <div className="drink__info">
           <h3>{props.name}</h3>
-          <Layer color="#feeeca" label="mléčná pěna" />
+          {props.layers.map(({ color, label }) => (
+            <Layer key={label} color={color} label={label} />
+          ))}
         </div>
       </div>
       <form className="drink__controls">

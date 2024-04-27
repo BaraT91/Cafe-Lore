@@ -1,4 +1,5 @@
 import './style.css';
+import { Layer } from '../Layer';
 
 export const Drink = (props) => {
   return (
@@ -9,13 +10,7 @@ export const Drink = (props) => {
         </div>
         <div className="drink__info">
           <h3>{props.name}</h3>
-          <div className="layer">
-            <div
-              className="layer__color"
-              style={{ backgroundColor: '#613916' }}
-            ></div>
-            <div className="layer__label">espresso</div>
-          </div>
+          <Layer color="#feeeca" label="mléčná pěna" />
         </div>
       </div>
       <form className="drink__controls">

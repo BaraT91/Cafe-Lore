@@ -36,11 +36,15 @@ document.querySelector('#root').innerHTML = render(
             Zatím nemáte nic objednáno
           </p>
           <div className="order__items">
-            <>
-              {drinks.map(({ id, name, image }) => (
-                <OrderItems key={id} name={name} image={image} />
-              ))}
-            </>
+            {drinks.length > 0 ? (
+              <>
+                {drinks.map(({ id, name, image }) => (
+                  <OrderItems key={id} name={name} image={image} />
+                ))}
+              </>
+            ) : (
+              <p>Vaše objednávka je prázdná</p>
+            )}
           </div>
         </div>
       </main>
